@@ -68,7 +68,7 @@ function createJwt(Response $response): Response
   );
 
   $token_jwt = JWT::encode($payload, JWT_SECRET, "HS256");
-  $response = $response->withHeader("Authorization", "Bearer{$token_jwt}");
+  $response = $response->withHeader("Authorization", "Bearer {$token_jwt}");
   return $response;
 }
 
