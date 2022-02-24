@@ -35,10 +35,10 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
   $login = $body['login'] ?? "";
   $pass = $body['pass'] ?? "";
 
-  if (!preg_match("/[a-zA-Z0-9]{1,20/}", $login)) {
+  if (!preg_match("/[a-zA-Z0-9]{1,20}/", $login)) {
     $err = true;
   }
-  if (!preg_match("/[a-zA-Z0-9]{1,20/}", $pass)) {
+  if (!preg_match("/[a-zA-Z0-9]{1,20}/", $pass)) {
     $err = true;
   }
 
