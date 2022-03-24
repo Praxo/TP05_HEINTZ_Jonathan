@@ -1,0 +1,15 @@
+<label>Prenom : </label> <input [(ngModel)]="prenom"/>
+<div *ngIf = "!regEx1.test(prenom)">Corriger le nom</div>
+<br/>
+<label>Nom : </label> <input [(ngModel)]="nom"/>
+<div *ngIf = "!regEx1.test(nom)">Corriger le  prenom</div>
+
+<br/><label>Adresse : </label> <input [(ngModel)]="adresse"/>
+<div *ngIf = "!regEx2.test(adresse)">Corriger le champ adresse</div>
+<br/><label>CodePostal : </label>  <input [(ngModel)]="codePostal"/>
+<div *ngIf = "!regEx3.test(codePostal)">Corriger le champ code Postal</div>
+
+<br/><label>Ville : </label>  <input [(ngModel)]="ville"/>
+<div *ngIf = "!regEx1.test(ville)">Corriger le champ ville</div>
+
+<br/><br/><button (click)="click()" [disabled]="!regEx1.test(prenom)&&!regEx1.test(nom)&&!regEx2.test(adresse)&&!regEx3.test(codePostal)&&!regEx1.test(ville)">Enregistrer</button>

@@ -93,5 +93,4 @@ $options = [
 
 
 $app->add(new Tuupola\Middleware\JwtAuthentication($options));
-
 $app->run();
