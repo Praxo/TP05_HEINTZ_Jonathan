@@ -2,13 +2,13 @@ Product:
     type: entity
     table: product
     id:
-        idProduit:
+        idProduct:
             type: integer
             nullable: false
             options:
                 unsigned: false
             id: true
-            column: id_produit
+            column: id_product
             generator:
                 strategy: SEQUENCE
     fields:

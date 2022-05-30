@@ -15,12 +15,12 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="id_produit", type="integer")
+     * @ORM\Column(name="id_product", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="product_id_produit_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="product_id_product_seq", allocationSize=1, initialValue=1)
      */
-    private $idProduit;
+    private $idProduct;
 
     /**
      * @var string|null
@@ -52,13 +52,13 @@ class Product
 
 
     /**
-     * Get idProduit.
+     * Get idProduct.
      *
      * @return int
      */
-    public function getIdProduit()
+    public function getIdProduct()
     {
-        return $this->idProduit;
+        return $this->idProduct;
     }
 
     /**
