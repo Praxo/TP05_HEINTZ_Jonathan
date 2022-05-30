@@ -1,0 +1,38 @@
+Product:
+    type: entity
+    table: product
+    id:
+        idProduit:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_produit
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        price:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        description:
+            type: string
+            nullable: true
+            length: 256
+            options:
+                fixed: false
+        producttype:
+            type: string
+            nullable: true
+            length: 256
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }
