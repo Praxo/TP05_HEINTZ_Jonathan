@@ -29,31 +29,37 @@ $app->get('/api/user', function (Request $request, Response $response, $args) {
 });
 
 
-// API authentification générant un JWT
-$app->post(
-  '/api/login',
-  function (Request $resquest, Response $response, $args) {
-    $err = false;
-    $body = $resquest->getParsedBody();
-    $login = $body['login'] ?? '';
-    $pass = $body['pass'] ?? '';
+// APi d'authentification générant un JWT
+$app->post('/api/login', function (Request $request, Response $response, $args) {   
+  global $entityManager;
+  $err=false;
+  $body = $request->getParsedBody();
+  $login = $body ['login'] ?? "";
+  $pass = $body ['pass'] ?? "";
 
-    if (!preg_match("/[a-zA-Z0-9]{1,20}/", $login)) {
+  if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login))   {
       $err = true;
-    }
-    if (!preg_match("/[a-zA-Z0-9]{1,20}/", $pass)) {
-      $err = true;
-    }
-    if (!$err) {
-      $response = createJWT($response);
-      $data = ['nom' => 'toto', 'prenom' => 'titi'];
-      $response->getBody()->write(json_encode($data));
-    } else {
-      $response = $response->withStatus(401);
-    }
-    return $response;
   }
-);
+  if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass))  {
+      $err=true;
+  }
+  if (!$err) {
+      $utilisateurRepository = $entityManager->getRepository('Utilisateur');
+      $utilisateur = $utilisateurRepository->findOneBy(array('login' => $login, 'password' => $pass));
+      if ($utilisateur and $login == $utilisateur->getLogin() and $pass == $utilisateur->getPassword()) {
+          $response = addHeaders ($response);
+          $response = createJwT ($response);
+          $data = array('nom' => $utilisateur->getNom(), 'prenom' => $utilisateur->getPrenom());
+          $response->getBody()->write(json_encode($data));
+      } else {          
+          $response = $response->withStatus(401);
+      }
+  } else {
+      $response = $response->withStatus(401);
+  }
+
+  return $response;
+});
 
 function createJwt(Response $response): Response
 {
