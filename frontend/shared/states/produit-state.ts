@@ -17,7 +17,13 @@ export class BasketState {
   }
   @Selector()
   static countProducts(state: ProduitStateModel) {
-    return state.produits.length;
+    let pizzaCount = 0;
+    
+    state.produits.forEach(pizza => {
+      pizzaCount += pizza.quantity;
+    });
+
+    return pizzaCount;
   }
 
   @Action(AddProduct)
