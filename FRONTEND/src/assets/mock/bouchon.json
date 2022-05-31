@@ -1,6 +1,32 @@
 [
-    {"ref":"x1","titre":"linux","prix":10},
-    {"ref":"x2,","titre":"windows","prix":15},
-    {"ref":"x3","titre":"angular","prix":5}
+  {
+    "pizza": "BELLACHO",
+    "price": 12,
+    "detail": "Sauce tomate bio, mozzarella, chorizo français, merguez, duo de poivrons"
+  },
+  {
+    "pizza": "SAVOYARDE",
+    "price": 14,
+    "detail": "Crème fraîche légère française, mozzarella, lardons fumés, pommes de terre françaises sautées, Reblochon de Savoie AOP, origan"
+  },
+  {
+    "pizza": "REINE",
+    "price": 10,
+    "detail": "Sauce tomate bio, mozzarella, jambon, champignons de Paris"
+  },
+  {
+    "pizza": "HAWAÏENNE POULET",
+    "price": 13,
+    "detail": "Sauce tomate bio, mozzarella, poulet rôti, ananas"
+  },
+  {
+    "pizza": "CHORIZZA",
+    "price": 13,
+    "detail": "Sauce tomate bio, mozzarella, chorizo français, chèvre, olives Kalamata bio"
+  },
+  {
+    "pizza": "CANNIBALE",
+    "price": 12,
+    "detail": "Sauce barbecue, mozzarella, poulet rôti, merguez, boulettes de bœuf assaisonnées."
+  }
 ]
-

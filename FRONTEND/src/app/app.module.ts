@@ -1,41 +1,49 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FormulaireComponent } from './formulaire/formulaire.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { AccueilComponent } from './accueil/accueil.component';
-import { AuthGuard } from './auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+import { DetailComponent } from './detail/detail.component';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+import { HomeComponent } from './home/home.component';
 import { NgxsModule } from '@ngxs/store';
-import { PanierState } from '../shared/states/panier-state';
-import { LoginComponent } from './login/login.component'
-import { ApiHttpInterceptor } from './api-http-interceptor';
+import { BasketState } from 'shared/states/produit-state';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon'
+import { MatSliderModule } from '@angular/material/slider';
+import { AccountComponent } from './account/account.component';
+import { ErrorsDirective } from './errors.directive'
 
-const appRoutes : Routes = [
-  {path:'',component:AccueilComponent},
-  {path:'connexion',component:LoginComponent},
-  {path:'formulaire',component:FormulaireComponent},
-  {path: 'produits', canActivate: [AuthGuard], loadChildren: () => import('./produits/produits.module').then(m => m.ProduitsModule)}
+const routes: Routes = [
+  { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'user', component: AccountComponent },
+  { path: 'basket', loadChildren: () => import('./mod-basket/mod-basket.module').then(m => m.ModBasketModule) },
+  { path: 'catalogue/:id', component: DetailComponent },
+  { path: 'catalogue', component: CatalogueComponent }
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FormulaireComponent,
-    AccueilComponent,
-    LoginComponent,
+    DetailComponent,
+    CatalogueComponent,
+    AccountComponent,
+    ErrorsDirective,
   ],
   imports: [
-    BrowserModule,FormsModule,HttpClientModule,
-    RouterModule.forRoot (appRoutes),
-    NgxsModule.forRoot ([PanierState])
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    NgxsModule.forRoot([BasketState]),
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSliderModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS,   useClass: ApiHttpInterceptor, multi: true }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
