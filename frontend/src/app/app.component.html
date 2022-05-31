@@ -1,0 +1,20 @@
+<div class="contaienr">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Mamma mia</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Accueil</a>
+          <a class="nav-link" [routerLink]="['/catalogue']">Pizzas</a>
+          <a class="nav-link" [routerLink]="['/user']">Mon Compte</a>
+          <div>
+            <a class="nav-link" [routerLink]="['/basket']">Panier
+              {{ countProducts$|async}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

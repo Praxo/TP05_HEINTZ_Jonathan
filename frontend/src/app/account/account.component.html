@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col mb-2">
+      <label class="form-label">Nom</label>
+      <input type="text" formControlName="nom" name="nom" required class="form-control">
+    </div>
+    <div class="col mb-2">
+      <label class="form-label">Prénom</label>
+      <input type="text" formControlName="prenom" class="form-control" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-2">
+      <label class="form-label">Téléphone</label>
+      <input type="tel" formControlName="tel" pattern="[0-9]{10}" appErrors class="form-control">
+    </div>
+    <div class="col mb-2">
+      <label>Adresse mail</label>
+      <input type="email" email formControlName="mel" appErrors class="form-control">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-2">
+      <label class="form-label">Nom utilisateur</label>
+      <input type="text" formControlName="username" class="form-control">
+    </div>
+    <div class="col mb-2">
+      <label class="form-label">Mot de passe</label>
+      <input type="password" formControlName="password" class="form-control">
+    </div>
+  </div>
+  <div class="d-grid gap-2">
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+  </div>
+</div>

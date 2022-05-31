@@ -1,0 +1,20 @@
+<label class="label-search">Trouve ta pizza </label>
+<input [(ngModel)]="recherche" oninput="this.value = this.value.toUpperCase()" (ngModelChange)="valuechange($event)">
+<br />
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Pizza</th>
+      <th>Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of catalogue| async; let index = index">
+      <td>{{c.pizza}}</td>
+      <td>{{c.price | number:'2.'}} €</td>
+      <button (click)="this.storeService.addToBasket(c)" type="button" class="btn addBasket">Ajouter</button>
+      <button [routerLink]="['/catalogue', index]" class="btn seeDetail">Détail</button>
+    </tr>
+  </tbody>
+</table>

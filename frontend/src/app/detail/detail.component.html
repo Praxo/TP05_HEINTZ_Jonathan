@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <h3>Ingrédients </h3>
+    <p *ngFor="let v of pizzaDetail$ | async ">
+      {{v.detail}}
+      <br />
+      <button (click)="this.storeService.addToBasket(v)" class="btn btn-primary">Ajouter au panier</button>
+    </p>
+  </div>
+</div>
