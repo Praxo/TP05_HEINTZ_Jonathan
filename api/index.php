@@ -47,7 +47,6 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
       $utilisateurRepository = $entityManager->getRepository('Utilisateur');
       $utilisateur = $utilisateurRepository->findOneBy(array('login' => $login, 'password' => $pass));
       if ($utilisateur and $login == $utilisateur->getLogin() and $pass == $utilisateur->getPassword()) {
-          $response = addHeaders ($response);
           $response = createJwT ($response);
           $data = array('nom' => $utilisateur->getNom(), 'prenom' => $utilisateur->getPrenom());
           $response->getBody()->write(json_encode($data));
