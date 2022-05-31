@@ -1,24 +1,24 @@
-Product:
+Pizza:
     type: entity
-    table: product
+    table: pizza
     id:
-        idProduct:
+        idPizza:
             type: integer
             nullable: false
             options:
                 unsigned: false
             id: true
-            column: id_product
+            column: id_pizza
             generator:
                 strategy: SEQUENCE
     fields:
-        name:
+        nom:
             type: string
             nullable: true
             length: 100
             options:
                 fixed: false
-        price:
+        prix:
             type: integer
             nullable: true
             options:
@@ -29,10 +29,17 @@ Product:
             length: 256
             options:
                 fixed: false
-        producttype:
+        type:
             type: string
             nullable: true
-            length: 256
+            length: 100
             options:
                 fixed: false
+        imgUrl:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: img_url
     lifecycleCallbacks: {  }

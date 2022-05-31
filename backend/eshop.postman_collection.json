@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "e8be7a51-365a-4172-9ae0-831de82805f4",
+		"name": "eshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14633193"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOiJ0b3RvIiwiZW1haWwiOiJ0b3RvQGdtYWlsLmNvbSIsInBzZXVkbyI6InRvdG9Qc2V1ZG8iLCJpYXQiOjE2NDU3MTY3MDcsImV4cCI6MTY0NTcxNzMwN30.UXn6Os0YopidXepfLx8jR5ZovXQ4wzNQo1mBt-55NIM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "login",
+									"value": "test1",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "mdp1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inscription",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"content-length": true,
+							"host": true,
+							"user-agent": true,
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "login",
+									"value": "toto",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "tite",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ezeze@hotmail.fr",
+									"type": "text"
+								},
+								{
+									"key": "prenom",
+									"value": "ezez",
+									"type": "text"
+								},
+								{
+									"key": "nom",
+									"value": "ezezez",
+									"type": "text"
+								},
+								{
+									"key": "adresse",
+									"value": "4 ruie ezeze",
+									"type": "text"
+								},
+								{
+									"key": "ville",
+									"value": "ezezez",
+									"type": "text"
+								},
+								{
+									"key": "codepostal",
+									"value": "68100",
+									"type": "text"
+								},
+								{
+									"key": "pays",
+									"value": "ezezezez",
+									"type": "text"
+								},
+								{
+									"key": "telephone",
+									"value": "099999",
+									"type": "text"
+								},
+								{
+									"key": "civilite",
+									"value": "ezezezez",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pizza",
+			"item": [
+				{
+					"name": "catalogue",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tp05-jonathan-heintz.herokuapp.com/api/hello/test",
+					"protocol": "https",
+					"host": [
+						"tp05-jonathan-heintz",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"hello",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://tp05-jonathan.herokuapp.com",
+			"type": "string"
+		}
+	]
+}

@@ -12,52 +12,10 @@ Client:
             generator:
                 strategy: SEQUENCE
     fields:
-        name:
+        login:
             type: string
             nullable: true
-            length: 100
-            options:
-                fixed: false
-        firstname:
-            type: string
-            nullable: true
-            length: 100
-            options:
-                fixed: false
-        address:
-            type: string
-            nullable: true
-            length: 200
-            options:
-                fixed: false
-        zipcode:
-            type: string
-            nullable: true
-            length: 10
-            options:
-                fixed: false
-        city:
-            type: string
-            nullable: true
-            length: 100
-            options:
-                fixed: false
-        phone:
-            type: string
-            nullable: true
-            length: 15
-            options:
-                fixed: false
-        email:
-            type: string
-            nullable: true
-            length: 100
-            options:
-                fixed: false
-        gender:
-            type: string
-            nullable: true
-            length: 50
+            length: 30
             options:
                 fixed: false
         password:
@@ -66,16 +24,59 @@ Client:
             length: 256
             options:
                 fixed: false
-        login:
+        email:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        prenom:
             type: string
             nullable: true
             length: 100
             options:
                 fixed: false
-        country:
+        nom:
             type: string
             nullable: true
             length: 100
+            options:
+                fixed: false
+        adresse:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        ville:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        codePostal:
+            type: string
+            nullable: true
+            length: 15
+            options:
+                fixed: false
+            column: code_postal
+        pays:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        telephone:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        civilite:
+            type: string
+            nullable: true
+            length: 25
             options:
                 fixed: false
     lifecycleCallbacks: {  }

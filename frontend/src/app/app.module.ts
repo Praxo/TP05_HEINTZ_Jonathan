@@ -12,8 +12,9 @@ import { BasketState } from 'shared/states/produit-state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSliderModule } from '@angular/material/slider';
-import { AccountComponent} from './user/account/account.component';
+import { AccountComponent } from './user/account/account.component';
 import { ErrorsDirective } from './errors.directive'
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgxsModule.forRoot([BasketState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
     BrowserAnimationsModule,
     MatIconModule,
     MatSliderModule,
