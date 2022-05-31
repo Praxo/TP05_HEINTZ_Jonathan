@@ -12,11 +12,17 @@ import { StoreService } from 'src/app/store.service'
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
+  public basketForm!: FormGroup;
 
   constructor(public storeService: StoreService) { }
 
 
   ngOnInit(): void {
   }
+
   @Select(BasketState.getProduit) produits$: Observable<Pizza[]>
+
+  onSubmit() {
+    // console.log(this.produits$);
+  }
 }

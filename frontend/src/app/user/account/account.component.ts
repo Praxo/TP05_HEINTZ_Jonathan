@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../store.service';
-
+import { StoreService } from 'src/app/store.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',

@@ -1,10 +1,19 @@
-<div class="container">
-  <div class="row">
-    <ul>
-      <li *ngFor="let p of produits$ | async">
-        {{p.pizza}} - {{p.price}} € - Quantité : {{p.quantity}}
-        <button (click)="this.storeService.deleteToBasket(p)" class="btn btn-danger">Supprimer</button>
-      </li>
-    </ul>
-  </div>
+<div class="content">
+  <ng-container *ngIf="(produits$ | async)?.length==0">
+    <a routerLink="/catalogue">Vous n'avez pas encore choisi de pizza, retrouvez les ici !</a>
+  </ng-container>
+  
+  <ng-container *ngIf="(produits$ | async)?.length> 0">
+    <h2>Votre panier</h2>
+    <div class="row">
+      <ul>
+        <li *ngFor="let p of produits$ | async">
+          {{p.pizza}} - {{p.price}} € - Quantité : {{p.quantity}}
+          <button (click)="this.storeService.deleteToBasket(p)" class="btn btn-danger">Supprimer</button>
+        </li>
+      </ul>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSubmit()">Paiement</button>
+    </div>
+  </ng-container>
+
 </div>

@@ -15,6 +15,7 @@ export class BasketState {
   static getProduit(state: ProduitStateModel) {
     return state.produits;
   }
+  
   @Selector()
   static countProducts(state: ProduitStateModel) {
     let pizzaCount = 0;
