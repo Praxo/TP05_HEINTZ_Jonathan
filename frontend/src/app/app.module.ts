@@ -1,3 +1,5 @@
+import { RegisterComponent } from './user/account/register/register.component';
+import { LoginComponent } from './user/account/login/login.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
@@ -15,6 +17,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AccountComponent } from './user/account/account.component';
 import { ErrorsDirective } from './errors.directive'
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
@@ -31,7 +35,10 @@ const routes: Routes = [
     DetailComponent,
     CatalogueComponent,
     AccountComponent,
+    RegisterComponent,
+    LoginComponent,
     ErrorsDirective,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +51,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatIconModule,
     MatSliderModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

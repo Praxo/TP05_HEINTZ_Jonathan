@@ -11,9 +11,10 @@ import { Select } from '@ngxs/store';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   @Select(BasketState.countProducts) countProducts$: Observable<number>;
+
   constructor(private service: CatalogueService) { }
+
   ngOnInit(): void {
   }
 

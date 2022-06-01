@@ -1,0 +1,35 @@
+<div
+  class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img">
+      <title>Mamma mia</title>
+    </svg>
+    <span class="fs-4">Mamma mia</span>
+  </a>
+
+
+  <nav class="d-flex align-items-center">
+    <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/home" routerLinkActive="active">Accueil</a>
+    <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/catalogue">La Carte</a>
+    <ng-container *ngIf="(currentUser$ | async)">
+      <a class="me-3 py-2 text-dark text-decoration-none" routerLink="/user">Mon compte</a>
+    </ng-container>
+    <div>
+      <a class="nav-link" routerLink="/basket">Panier
+        {{ countProducts$ | async}}
+      </a>
+    </div>
+  </nav>
+
+
+  <ng-container *ngIf="(currentUser$ | async) === null">
+    <div class="d-flex align-items-center">
+      <a href="#" class="btn btn-outline-primary m-2" routerLink="login">Se connecter</a>
+      <a href="#" class="btn btn-outline-secondary m-3" routerLink="register">S'inscrire</a>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="currentUser$ != null ">
+  </ng-container>
+
+</div>
