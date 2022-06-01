@@ -79,7 +79,6 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
         $utilisateur = $utilisateurRepository->findOneBy(array('login' => $login, 'password' => $password));
 
         if ($utilisateur && $login == $utilisateur->getLogin() and $password == $utilisateur->getPassword()) {
-            $response = createJwT ($response, $login);
             $data = array('nom' => $utilisateur->getNom(), 'prenom' => $utilisateur->getPrenom());
             $response->getBody()->write(json_encode($data));
         } else {
@@ -130,7 +129,7 @@ $app->post('/api/signup', function (Request $request, Response $response)
     $user["login"] = $client->getLogin();
 
     $response->getBody()->write(json_encode($user));
-    return $response;
+    return addHeaders($response);
 });
 
 function createJwt(Response $response): Response
