@@ -17,7 +17,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
+      this.id = + params.get('id');
       this.pizzaDetail$ = this.catalogueService.getCatalogue()
         .pipe(
           map(pizzas => pizzas.filter((v, idx) => idx == this.id)

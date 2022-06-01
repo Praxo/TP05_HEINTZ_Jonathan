@@ -12,6 +12,8 @@ export class UserService {
   baseUrl = "https://tp05-jonathan.herokuapp.com/api/";
   private currentUserSource = new BehaviorSubject<IUser | null>(null);
 
+
+
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -26,7 +28,7 @@ export class UserService {
 
     console.log(token);
 
-    return this.http.get<IUser>(this.baseUrl + 'users', { headers }).pipe(
+    return this.http.get<IUser>(this.baseUrl, { headers }).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
@@ -36,19 +38,39 @@ export class UserService {
     );
   }
 
-  login(values: IUser) {
-    return this.http.post<IUser>(this.baseUrl + 'users/login', values).pipe(
-      map((user: IUser) => {
-        if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSource.next(user);
-        }
-      })
-    );
+  // login(data: any) {
+  //   return this.http.post<any>(this.baseUrl + 'login', data).pipe(
+  //     map((user: IUser) => {
+  //       if (user) {
+  //         localStorage.setItem('token', user.token);
+  //         this.currentUserSource.next(user);
+  //       }
+  //     })
+  //   );
+  // }
+
+  login(dataForm: any) {
+    let data: String = "";
+
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+    };
+
+    data = 'login=' + dataForm.login + "&password=" + dataForm.password;
+
+    return this.http.post<IUser>(this.baseUrl + 'login', data, httpOptions);
   }
 
-  register(values: any) {
-    return this.http.post<IUser>(this.baseUrl + 'users/register', values).pipe(
+  register(dataForm: any) {
+    let data: String = "";
+
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+    };
+
+    data = 'login=' + dataForm.login + "&password=" + dataForm.password;
+
+    return this.http.post<IUser>(this.baseUrl + 'register', data).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('token', user.token);

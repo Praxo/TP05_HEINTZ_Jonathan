@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      login: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
   }
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm)
       this.userService.login(this.loginForm.value).subscribe(() => {
-        this.router.navigateByUrl('/game')
+        this.router.navigateByUrl('/login')
       }, error => {
-        console.log(error);
+        console.log(this.loginForm, error);
       }
       );
     else

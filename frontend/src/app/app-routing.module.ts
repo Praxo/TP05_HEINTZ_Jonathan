@@ -1,3 +1,4 @@
+import { DetailComponent } from './detail/detail.component';
 import { BasketComponent } from './mod-basket/basket/basket.component';
 
 import { NgModule } from '@angular/core';
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'basket', component: BasketComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  // { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
