@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { Pizza } from "shared/models/Pizza";
-import { AddProduct, RemoveProduct } from "../actions/produit.action";
+import { AddPizza, RemovePizza, RemoveAllPizza } from "../actions/produit.action";
 import { ProduitStateModel } from "./produit-state-model";
 
 @State<ProduitStateModel>({
@@ -15,11 +15,11 @@ export class BasketState {
   static getProduit(state: ProduitStateModel) {
     return state.produits;
   }
-  
+
   @Selector()
   static countProducts(state: ProduitStateModel) {
     let pizzaCount = 0;
-    
+
     state.produits.forEach(pizza => {
       pizzaCount += pizza.quantity;
     });
@@ -27,10 +27,10 @@ export class BasketState {
     return pizzaCount;
   }
 
-  @Action(AddProduct)
+  @Action(AddPizza)
   AddProduct(
     { getState, patchState }: StateContext<ProduitStateModel>,
-    { payload }: AddProduct
+    { payload }: AddPizza
   ) {
 
     const state = getState()
@@ -45,10 +45,10 @@ export class BasketState {
     }
   }
 
-  @Action(RemoveProduct)
+  @Action(RemovePizza)
   DeleteProduct(
     { getState, patchState }: StateContext<ProduitStateModel>,
-    { payload }: RemoveProduct
+    { payload }: RemovePizza
   ) {
     const state = getState()
     if (state.produits.find(elem => elem.pizza == payload.pizza).quantity > 1) {
@@ -60,6 +60,15 @@ export class BasketState {
         produits: state.produits.filter(produit => produit.pizza !== payload.pizza)
       })
     }
+  }
+
+  @Action(RemoveAllPizza)
+  DeleteAllProduct(
+    { patchState }: StateContext<ProduitStateModel>,
+  ) {
+    patchState({
+      produits: [],
+    });
   }
 }
 
