@@ -12,8 +12,6 @@ export class UserService {
   baseUrl = "https://tp05-jonathan.herokuapp.com/api/";
   private currentUserSource = new BehaviorSubject<IUser | null>(null);
 
-
-
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -22,20 +20,13 @@ export class UserService {
     return this.currentUserSource
   }
 
-  loadCurrentUser(token: string) {
-    let headers = new HttpHeaders;
-    headers = headers.set('Authorization', `Bearer ${token}`);
+  loadCurrentUser() {
+  let userJson = localStorage.getItem('user');
+  let user = JSON.parse(userJson);
+  
+  console.log(user);
 
-    console.log(token);
-
-    return this.http.get<IUser>(this.baseUrl, { headers }).pipe(
-      map((user: IUser) => {
-        if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSource.next(user);
-        }
-      })
-    );
+  if (user) this.currentUserSource.next(user);
   }
 
   // login(data: any) {
@@ -58,7 +49,14 @@ export class UserService {
 
     data = 'login=' + dataForm.login + "&password=" + dataForm.password;
 
-    return this.http.post<IUser>(this.baseUrl + 'login', data, httpOptions);
+    return this.http.post<IUser>(this.baseUrl + 'login', data, httpOptions).pipe(
+      map((user: IUser) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+      })
+      
+    );
   }
 
   register(dataForm: any) {
@@ -68,19 +66,19 @@ export class UserService {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     };
 
-    data = 'login=' + dataForm.login + "&password=" + dataForm.password;
+    data = 'login=' + dataForm.login + "&password=" + dataForm.password + "&email=" + dataForm.email;;
 
-    return this.http.post<IUser>(this.baseUrl + 'register', data).pipe(
+    return this.http.post<IUser>(this.baseUrl + 'register', data, httpOptions).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user));
         }
       })
     );
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/login');
   }

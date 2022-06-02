@@ -22,14 +22,14 @@ export class RegisterComponent implements OnInit {
       login: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      prenom: new FormControl('', Validators.required),
-      nom: new FormControl('', Validators.required),
-      adresse: new FormControl('', Validators.required),
-      ville: new FormControl('', Validators.required),
-      codePostal: new FormControl('', Validators.required),
-      pays: new FormControl('', Validators.required),
-      telephone: new FormControl('', Validators.required),
-      civilite: new FormControl('', Validators.required),
+      // prenom: new FormControl('', Validators.required),
+      // nom: new FormControl('', Validators.required),
+      // adresse: new FormControl('', Validators.required),
+      // ville: new FormControl('', Validators.required),
+      // codePostal: new FormControl('', Validators.required),
+      // pays: new FormControl('', Validators.required),
+      // telephone: new FormControl('', Validators.required),
+      // civilite: new FormControl('', Validators.required),
     });
   }
 

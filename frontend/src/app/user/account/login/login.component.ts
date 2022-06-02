@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm)
       this.userService.login(this.loginForm.value).subscribe(() => {
-        this.router.navigateByUrl('/login')
-      }, error => {
+        this.router.navigateByUrl('/catalogue')
+      }, (error: any) => {
         console.log(this.loginForm, error);
       }
       );

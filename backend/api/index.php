@@ -5,6 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
+use LDAP\Result;
 
 require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__  . '/../bootstrap.php';
@@ -106,15 +107,17 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
   if (!preg_match("/[a-zA-Z0-9]{1,20}/", $password)) {
     $err = true;
   }
+  
   if (!$err) {
     $clientRepository = $entityManager->getRepository('Client');
     $client = $clientRepository->findOneBy(array('login' => $login, 'password' => $password));
 
     if ($client && $login == $client->getLogin() and $password == $client->getPassword()) {
       $response = addHeaders($response);
-      $response = createJwT($response);
-      $data = array('nom' => $client->getNom(), 'prenom' => $client->getPrenom());
+      $token = createJwT($response);
+      $data = array('nom' => $client->getNom(), 'prenom' => $client->getPrenom(), 'token' => $token);
       $response->getBody()->write(json_encode($data));
+      $response = $response->withHeader("Authorization", "Bearer {$token}");
     } else {
       $response = $response->withStatus(401);
     }
@@ -129,30 +132,32 @@ $app->post('/api/signup', function (Request $request, Response $response) {
   global $entityManager;
   $body = $request->getParsedBody();
 
+  var_dump($body);
+
   $login = $body['login'] ?? "";
   $password = $body['password'] ?? "";
   $email = $body['email'] ?? "";
-  $prenom = $body['prenom'] ?? "";
-  $nom = $body['nom'] ?? "";
-  $adresse = $body['adresse'] ?? "";
-  $ville = $body['ville'] ?? "";
-  $codepostal = $body['codepostal'] ?? "";
-  $pays = $body['pays'] ?? "";
-  $telephone = $body['telephone'] ?? "";
-  $civilite = $body['civilite'] ?? "";
+  // $prenom = $body['prenom'] ?? "";
+  // $nom = $body['nom'] ?? "";
+  // $adresse = $body['adresse'] ?? "";
+  // $ville = $body['ville'] ?? "";
+  // $codepostal = $body['codepostal'] ?? "";
+  // $pays = $body['pays'] ?? "";
+  // $telephone = $body['telephone'] ?? "";
+  // $civilite = $body['civilite'] ?? "";
 
   $client = new Client();
   $client->setLogin($login);
   $client->setPassword($password);
   $client->setEmail($email);
-  $client->setPrenom($prenom);
-  $client->setNom($nom);
-  $client->setAdresse($adresse);
-  $client->setCodePostal($codepostal);
-  $client->setVille($ville);
-  $client->setPays($pays);
-  $client->setTelephone($telephone);
-  $client->setCivilite($civilite);
+  // $client->setPrenom($prenom);
+  // $client->setNom($nom);
+  // $client->setAdresse($adresse);
+  // $client->setCodePostal($codepostal);
+  // $client->setVille($ville);
+  // $client->setPays($pays);
+  // $client->setTelephone($telephone);
+  // $client->setCivilite($civilite);
 
   $entityManager->persist($client);
   $entityManager->flush();
@@ -164,8 +169,7 @@ $app->post('/api/signup', function (Request $request, Response $response) {
   return addHeaders($response);
 });
 
-function createJwt(Response $response): Response
-{
+function createJwt(Response $response){
   $issuedAt = time();
   $expirationTime = $issuedAt + 600;
   $payload = array(
@@ -177,8 +181,10 @@ function createJwt(Response $response): Response
   );
 
   $token_jwt = JWT::encode($payload, JWT_SECRET, "HS256");
-  $response = $response->withHeader("Authorization", "Bearer {$token_jwt}");
-  return $response;
+
+  return $token_jwt; 
+  // $response = $response->withHeader("Authorization", "Bearer {$token_jwt}");
+  // return $response;
 }
 
 $options = [
