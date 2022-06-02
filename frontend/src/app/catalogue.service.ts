@@ -9,9 +9,20 @@ import { Pizza } from 'shared/models/Pizza';
 })
 
 export class CatalogueService {
+  baseUrl = "https://tp05-jonathan.herokuapp.com/api/";
+
   constructor(private httpClient: HttpClient) { }
+
+  // public getCatalogue(): Observable<Pizza[]> {
+  //   return this.httpClient
+  //     .get<Pizza[]>(environment.baseUrl)
+  // }
+
   public getCatalogue(): Observable<Pizza[]> {
-    return this.httpClient
-      .get<Pizza[]>(environment.baseUrl)
+    return this.httpClient.get<any>(this.baseUrl + 'catalogue');
+  }
+
+  public getProduit(id: number): Observable<Pizza> {
+    return this.httpClient.get<Pizza>(this.baseUrl + 'catalogue/' + id);
   }
 }

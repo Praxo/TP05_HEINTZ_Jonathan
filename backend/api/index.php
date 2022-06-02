@@ -49,10 +49,12 @@ $app->get(
     foreach ($allPizza as $pizza) {
       $listPizza[] = array(
         "idPizza" => $pizza->getIdPizza(),
+        "nom" => $pizza->getNom(),
         "prix" => $pizza->getPrix(),
         "description" => $pizza->getDescription(),
         "type" => $pizza->getType(),
-        "imgUrl" => $pizza->getImgUrl()
+        "imgUrl" => $pizza->getImgUrl(),
+          "quantity" => 0
       );
     }
 
@@ -187,7 +189,7 @@ $options = [
   "algorithm" => ["HS256"],
   "secret" => JWT_SECRET,
   "path" => ["/api"],
-  "ignore" => ["/api/hello", "/api/login", "/api/signup"],
+  "ignore" => ["/api/hello", "/api/login", "/api/signup", "/api/catalogue", "/api/catalogue/{idPizza}"],
   "error" => function ($response, $arguments) {
     $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
     $response = $response->withStatus(401);

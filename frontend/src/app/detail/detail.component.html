@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
+    <h2></h2>
     <h3>Ingrédients </h3>
-    <p *ngFor="let v of pizzaDetail$ | async ">
-      {{v.detail}}
+    <p *ngFor="let p of pizzaDetail$ | async ">
+      {{p.description}}
       <br />
-      <button (click)="this.storeService.addToBasket(v)" class="btn btn-primary">Ajouter au panier</button>
+      <img src={{p.imgUrl}} alt={{p.nom}}>
+      <button (click)="this.storeService.addToBasket(p)" class="btn btn-primary">Ajouter au panier</button>
     </p>
   </div>
 </div>

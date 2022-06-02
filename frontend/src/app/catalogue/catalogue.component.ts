@@ -28,7 +28,7 @@ export class CatalogueComponent implements OnInit {
           map(
             pizzas =>
               pizzas.filter(
-                v => v.price > Number(this.recherche))
+                p => p.prix > Number(this.recherche))
           ))
     } else {
       this.catalogue = this.catalogueService.getCatalogue()
@@ -36,7 +36,7 @@ export class CatalogueComponent implements OnInit {
           map(
             pizzas =>
               pizzas.filter(
-                v => v.pizza.startsWith(this.recherche))
+                p => p.nom.startsWith(this.recherche))
           ))
     }
   }

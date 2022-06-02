@@ -34,9 +34,9 @@ export class BasketState {
   ) {
 
     const state = getState()
-    if (state.produits.find(elem => elem.pizza == payload.pizza)) {
+    if (state.produits.find(elem => elem.nom == payload.nom)) {
       patchState({
-        produits: state.produits.map((v: Pizza) => v.pizza !== payload.pizza ? v : { ...v, quantity: v.quantity + 1 })
+        produits: state.produits.map((v: Pizza) => v.nom !== payload.nom ? v : { ...v, quantity: v.quantity + 1 })
       })
     } else {
       patchState({
@@ -51,13 +51,13 @@ export class BasketState {
     { payload }: RemovePizza
   ) {
     const state = getState()
-    if (state.produits.find(elem => elem.pizza == payload.pizza).quantity > 1) {
+    if (state.produits.find(elem => elem.nom == payload.nom).quantity > 1) {
       patchState({
-        produits: state.produits.map((v: Pizza) => v.pizza !== payload.pizza ? v : { ...v, quantity: v.quantity - 1 })
+        produits: state.produits.map((v: Pizza) => v.nom !== payload.nom ? v : { ...v, quantity: v.quantity - 1 })
       })
     } else {
       patchState({
-        produits: state.produits.filter(produit => produit.pizza !== payload.pizza)
+        produits: state.produits.filter(produit => produit.nom !== payload.nom)
       })
     }
   }

@@ -1,6 +1,9 @@
 export interface Pizza {
-  pizza: string,
-  price: number,
-  detail: string,
-  quantity: number,
+  idPizza: string;
+  nom: string;
+  prix: number;
+  description: string;
+  type: string;
+  imgUrl: string;
+  quantity: number;
 }
