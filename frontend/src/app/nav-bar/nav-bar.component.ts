@@ -13,6 +13,7 @@ import { Select } from '@ngxs/store';
 
 export class NavBarComponent implements OnInit {
   currentUser$: Observable<IUser | null>;
+
   @Select(BasketState.countProducts) countProducts$: Observable<number>;
 
   constructor(private userService: UserService) {
