@@ -132,8 +132,6 @@ $app->post('/api/signup', function (Request $request, Response $response) {
   global $entityManager;
   $body = $request->getParsedBody();
 
-  var_dump($body);
-
   $login = $body['login'] ?? "";
   $password = $body['password'] ?? "";
   $email = $body['email'] ?? "";
@@ -150,8 +148,8 @@ $app->post('/api/signup', function (Request $request, Response $response) {
   $client->setLogin($login);
   $client->setPassword($password);
   $client->setEmail($email);
-  // $client->setPrenom($prenom);
-  // $client->setNom($nom);
+  $client->setPrenom("toto");
+  $client->setNom("toto");
   // $client->setAdresse($adresse);
   // $client->setCodePostal($codepostal);
   // $client->setVille($ville);
@@ -162,10 +160,10 @@ $app->post('/api/signup', function (Request $request, Response $response) {
   $entityManager->persist($client);
   $entityManager->flush();
 
-  $user = [];
-  $user["login"] = $client->getLogin();
+  $token = createJwT($response);
+  $data = array('nom' => $client->getNom(), 'prenom' => $client->getPrenom(), 'token' => $token);
+  $response->getBody()->write(json_encode($data));
 
-  $response->getBody()->write(json_encode($user));
   return addHeaders($response);
 });
 

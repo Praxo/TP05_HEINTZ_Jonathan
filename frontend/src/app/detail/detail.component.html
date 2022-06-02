@@ -5,7 +5,9 @@
     <p *ngFor="let p of pizzaDetail$ | async ">
       {{p.description}}
       <br />
-      <img src={{p.imgUrl}} alt={{p.nom}} class="img-fluid">
+      <img src={{p.imgUrl}} alt={{p.nom}} class="card-img-top"
+        data-src="holder.js/100px400?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+        alt="Thumbnail [100%x400]" class="detail-img">
       <button (click)="this.storeService.addToBasket(p)" class="btn btn-primary">Ajouter au panier</button>
     </p>
   </div>

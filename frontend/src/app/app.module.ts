@@ -1,10 +1,12 @@
+import { ApiInterceptor } from './interceptor/api.interceptor';
+import { BasketComponent } from './mod-basket/basket/basket.component';
 import { RegisterComponent } from './user/account/register/register.component';
 import { LoginComponent } from './user/account/login/login.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'catalogue/:id', component: DetailComponent },
   { path: 'catalogue', component: CatalogueComponent }
 ]
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,11 @@ const routes: Routes = [
     MatSliderModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:
+
+      ApiInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

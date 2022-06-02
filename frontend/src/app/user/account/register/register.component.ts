@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.registerForm)
       this.userService.register(this.registerForm.value).subscribe(() => {
-        this.router.navigateByUrl('/signup/')
+        this.router.navigateByUrl('/catalogue')
       }, (error: any) => {
         console.log(error);
       }

@@ -6,7 +6,8 @@ import { BasketState } from 'shared/states/produit-state';
 import { Pizza } from 'shared/models/Pizza';
 import { StoreService } from 'src/app/store.service';
 import { RemoveAllPizza } from 'shared/actions/produit.action';
-
+import { IUser } from 'shared/models/User';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-basket',
@@ -15,10 +16,14 @@ import { RemoveAllPizza } from 'shared/actions/produit.action';
 })
 export class BasketComponent implements OnInit {
   public basketForm!: FormGroup;
+  currentUser$: Observable<IUser | null>;
 
-  constructor(public storeService: StoreService, public store: Store) { }
+  constructor(public storeService: StoreService, public store: Store, private userService: UserService) {
+    this.currentUser$ = new Observable<IUser>();
+  }
 
   ngOnInit(): void {
+    this.currentUser$ = this.userService.currentUser$;
   }
 
   @Select(BasketState.getProduit) produits$: Observable<Pizza[]>

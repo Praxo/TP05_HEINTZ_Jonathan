@@ -21,24 +21,11 @@ export class UserService {
   }
 
   loadCurrentUser() {
-  let userJson = localStorage.getItem('user');
-  let user = JSON.parse(userJson);
-  
-  console.log(user);
+    let userJson = localStorage.getItem('user');
+    let user = JSON.parse(userJson);
 
-  if (user) this.currentUserSource.next(user);
+    if (user) this.currentUserSource.next(user);
   }
-
-  // login(data: any) {
-  //   return this.http.post<any>(this.baseUrl + 'login', data).pipe(
-  //     map((user: IUser) => {
-  //       if (user) {
-  //         localStorage.setItem('token', user.token);
-  //         this.currentUserSource.next(user);
-  //       }
-  //     })
-  //   );
-  // }
 
   login(dataForm: any) {
     let data: String = "";
@@ -55,7 +42,7 @@ export class UserService {
           localStorage.setItem('user', JSON.stringify(user));
         }
       })
-      
+
     );
   }
 
@@ -68,7 +55,7 @@ export class UserService {
 
     data = 'login=' + dataForm.login + "&password=" + dataForm.password + "&email=" + dataForm.email;;
 
-    return this.http.post<IUser>(this.baseUrl + 'register', data, httpOptions).pipe(
+    return this.http.post<IUser>(this.baseUrl + 'signup', data, httpOptions).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));

@@ -16,20 +16,22 @@
     </ng-container>
     <div>
       <a class="nav-link" routerLink="/basket">Panier
-        {{ countProducts$ | async}}
+        <span class="basket-count" *ngIf="(countProducts$ | async)">
+          {{ countProducts$ | async}}
+        </span>
       </a>
     </div>
     <ng-container *ngIf="(currentUser$ | async)">
-    <a (click)="logout()" style="cursor: pointer;">
-      <i class="fa fa-sign-out"></i>Déconnexion
-    </a>
-  </ng-container>
+      <a (click)="logout()" style="cursor: pointer;">
+        <i class="fa fa-sign-out"></i>Déconnexion
+      </a>
+    </ng-container>
   </nav>
 
 
   <ng-container *ngIf="(currentUser$ | async) === null">
     <div class="d-flex align-items-center">
-      <a href="#" class="btn btn-outline-primary m-2" routerLink="login">Se connecter</a>
+      <a href="#" class="btn btn-outline-primary m-2" routerLink="../login">Se connecter</a>
       <a href="#" class="btn btn-outline-secondary m-3" routerLink="register">S'inscrire</a>
     </div>
   </ng-container>

@@ -12,8 +12,21 @@
           <button (click)="this.storeService.deleteToBasket(p)" class="btn btn-danger">Supprimer</button>
         </li>
       </ul>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSubmit()">Paiement</button>
+
+      <div *ngIf="(currentUser$ | async)">
+        <button class=" btn btn-lg btn-primary btn-block" type="submit" (click)="onSubmit()">Paiement</button>
+      </div>
+
+      <ng-container *ngIf="(currentUser$ | async) === null">
+        <div class="d-flex align-items-center">
+          <h3>Vous ne pouvez pas valider la commande si vous n'êtes pas connectés</h3>
+          <a href="#" class="btn btn-outline-primary m-2" routerLink="../login">Se connecter</a>
+          <a href="#" class="btn btn-outline-secondary m-3" routerLink="../register">S'inscrire</a>
+        </div>
+      </ng-container>
     </div>
   </ng-container>
+
+
 
 </div>
